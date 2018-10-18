@@ -11,7 +11,7 @@ void setup() {
   bob[2] = new JumboParticle();
 }
 void draw() {
-  frameRate(50);
+  frameRate(20);
   background(0);
 
   for (int i=0; i<bob.length; i++)
@@ -40,9 +40,11 @@ noStroke();
       }      
       if(myX<0){
         myX=250;
+        fill(0, 0, 250);
       }      
       if(myY>500){
         myY=250;
+        fill(0, 250, 0);
       }      
        if(myY<0){
         myY=250;
