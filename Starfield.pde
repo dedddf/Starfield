@@ -11,7 +11,7 @@ void setup() {
   bob[2] = new JumboParticle();
 }
 void draw() {
-  frameRate(20);
+  frameRate(10);
   background(0);
 
   for (int i=0; i<bob.length; i++)
