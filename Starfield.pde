@@ -1,37 +1,53 @@
-NormalParticle[] bob;
+Particle[] bob = new Particle[500];
 void setup() {
   size(500, 500);
-  bob = new NormalParticle[1000];
-  bob[1] = new  OddballParticle();
-  for (int i =2; i< bob.length; i++)
+
+  
+  for (int i =0; i< bob.length; i++)
   {
     bob[i] = new NormalParticle();
   }
+  bob[1] = new OddballParticle();
+  bob[2] = new JumboParticle();
 }
 void draw() {
+  frameRate(50);
   background(0);
-  bob[1].show();
-  bob[1].move();
-  for (int i=2; i<bob.length; i++)
+
+  for (int i=0; i<bob.length; i++)
   {
     bob[i].show();
     bob[i].move();
   }
+    bob[1].show();
 }
-class NormalParticle {
+class NormalParticle implements Particle {
   double myX, myY;
   double dSpeed, dDirection;
 
   NormalParticle() {
     myX = 250;
     myY = 250;
-    dSpeed = Math.random()*12;
-    dDirection =Math.PI*2*Math.random();
+    dSpeed = (Math.random()*10)+0;
+    dDirection =(Math.PI*2*Math.random());
   }
   public void move()
   {
-
-
+noStroke();
+     if(myX>500){
+        myX=250;
+        fill(0, 0, 0);
+      }      
+      if(myX<0){
+        myX=250;
+      }      
+      if(myY>500){
+        myY=250;
+      }      
+       if(myY<0){
+        myY=250;
+      }      
+    
     myX=myX+cos((float)dDirection)*dSpeed;
     myY=myY +sin((float)dDirection)*dSpeed;
   }
@@ -46,28 +62,29 @@ interface Particle
   public void show();
   public void move();
 }
-class OddballParticle //uses an interface
-{
-  double myX, myY;
-  double dSpeed, dDirection;
-
-  OddballParticle() {
-    myX = 250;
-    myY = 250;
-    dSpeed = Math.random()*12;
-    dDirection =Math.PI*2*Math.random();
+class OddballParticle implements Particle //uses an interface
+{  
+  
+  public void move(){  
+    
+   
   }
   public void show()
   {
-   myX=myX+10;
-   myY=myY +sin((float)dDirection)*dSpeed;
-  }
-  public void move()
-  {
-    ellipse((float)myX, (float)myY, 8, 3);
+    
+    
+    ellipse(250, 250, 80, 80);
+    
   }
 }
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle//uses inheritance
 {
-  //your code here
+public void show()
+  {
+    fill(250, 0, 0);
+    ellipse((float)myX, (float)myY, 10, 20);
+        
+  }
+
+
 }
